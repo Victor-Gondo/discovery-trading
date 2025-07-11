@@ -15,7 +15,7 @@ jobs:
     - name: Setup Python
       uses: actions/setup-python@v4
       with:
-        python-version: '3.12'
+        python-version: '3.11'
 
     - name: Load secrets into env
       run: |
@@ -30,7 +30,7 @@ jobs:
         pip install -r requirements.txt
       
     - name: Lint
-      run: flake8 src tests
+      run: flake8 .
 
     - name: Run tests
       run: pytest --maxfail=1 --disable-warnings -q
