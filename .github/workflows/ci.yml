@@ -1,0 +1,39 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, develop ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.12'
+
+    - name: Load secrets into env
+      run: |
+        echo "FINNHUB_KEY=${{ secrets.FINNHUB_KEY }}" >> $GITHUB_ENV
+        echo "ALPACA_KEY=${{ secrets.ALPACA_KEY }}"   >> $GITHUB_ENV
+        echo "ALPACA_ENDPOINT=${{ secrets.ALPACA_SECRET }}" >> $GITHUB_ENV
+
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+      
+    - name: Lint
+      run: flake8 src tests
+
+    - name: Run tests
+      run: pytest --maxfail=1 --disable-warnings -q
+
+    - name: Build Docker image
+      run: docker build . --tag yourorg/lean-news-momentum:ci

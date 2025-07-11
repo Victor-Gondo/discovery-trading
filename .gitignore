@@ -40,7 +40,7 @@ coverage.xml
 hypothesis/
 
 # Jupyter notebooks
-.ipynb_checkpoints
+.ipynb_checkpoints/
 
 # Virtual environments
 env/
@@ -60,10 +60,10 @@ venv.bak/
 *.sublime-workspace
 *.sublime-project
 
-# Docker files you override locally
+# Docker: user overrides
 docker-compose.override.yml
 
-# Lean CLI workspace state & data
+# LEAN CLI workspace state & data
 lean.json
 data/
 Cache/
@@ -74,5 +74,5 @@ Cache/
 backtest-report.html
 reports/
 
-# GitHub Actions caches
-.github/workflows/*.yml
+# ---- Remove this line so we track workflow files ----
+# .github/workflows/*.yml
