@@ -41,5 +41,12 @@ jobs:
         fi
 
 
-    - name: Build Docker image
-      run: docker build . --tag yourorg/lean-news-momentum:ci
+  # Remove or comment out the Docker build job/step until later
+  # docker:
+  #   needs: build
+  #   runs-on: ubuntu-latest
+
+  #   steps:
+  #   - uses: actions/checkout@v3
+  #   - name: Build Docker image
+  #     run: docker build . --tag yourorg/lean-news-momentum:ci

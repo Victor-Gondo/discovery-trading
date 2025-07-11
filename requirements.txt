@@ -1,3 +1,8 @@
 lean
 pytest
 flake8
+finnhub-python
+pandas
+pyarrow
+alpaca-trade-api
+python-dotenv
