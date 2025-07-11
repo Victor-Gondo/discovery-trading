@@ -1,0 +1,7 @@
+.git
+data
+Cache
+**/backtests
+*.db
+.venv
+env
