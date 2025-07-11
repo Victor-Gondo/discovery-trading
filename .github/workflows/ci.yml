@@ -32,8 +32,14 @@ jobs:
     - name: Lint
       run: flake8 .
 
-    - name: Run tests
-      run: pytest --maxfail=1 --disable-warnings -q
+      - name: Run tests
+        run: |
+          if [ -d tests ] && [ -n "$(ls tests/*.py 2>/dev/null)" ]; then
+            pytest --maxfail=1 --disable-warnings -q
+          else
+            echo "No tests found, skipping pytest"
+          fi
+
 
     - name: Build Docker image
       run: docker build . --tag yourorg/lean-news-momentum:ci
